@@ -1,25 +1,22 @@
-import * as React from 'react';
-import styles from './WebcomMarketingImagenes.module.scss';
-import { IWebcomMarketingImagenesProps } from './IWebcomMarketingImagenesProps';
-import { escape } from '@microsoft/sp-lodash-subset';
+import * as React from "react";
+import useGetFiles from "./useGetFiles";
+import { ItemMarketing } from "./ItemMarketing";
+import { Stack } from "@fluentui/react";
 
-export default class WebcomMarketingImagenes extends React.Component<IWebcomMarketingImagenesProps, {}> {
-  public render(): React.ReactElement<IWebcomMarketingImagenesProps> {
-    return (
-      <div className={ styles.webcomMarketingImagenes }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!</span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+export interface IMarketingImagenesProps {}
+
+export const MarketingImagenes: React.FunctionComponent<
+  IMarketingImagenesProps
+> = (props: React.PropsWithChildren<IMarketingImagenesProps>) => {
+  const { files, isLoading } = useGetFiles();
+
+  return (
+    <>
+      Aca
+      {isLoading && <div>Cargando...</div>}
+	  <Stack horizontal wrap tokens={{childrenGap:10}}>
+      	{!isLoading && files.map((i) => <ItemMarketing item={i} />)}
+	  </Stack>
+    </>
+  );
+};

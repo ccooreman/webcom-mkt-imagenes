@@ -1,31 +1,36 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import * as React from "react";
+import * as ReactDom from "react-dom";
+import { Version } from "@microsoft/sp-core-library";
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
-} from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+  PropertyPaneTextField,
+} from "@microsoft/sp-property-pane";
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { sp } from "@pnp/sp/presets/all";
 
-import * as strings from 'WebcomMarketingImagenesWebPartStrings';
-import WebcomMarketingImagenes from './components/WebcomMarketingImagenes';
-import { IWebcomMarketingImagenesProps } from './components/IWebcomMarketingImagenesProps';
+import * as strings from "WebcomMarketingImagenesWebPartStrings";
+import { MarketingImagenes, IMarketingImagenesProps } from "./components/WebcomMarketingImagenes";
 
 export interface IWebcomMarketingImagenesWebPartProps {
   description: string;
 }
 
 export default class WebcomMarketingImagenesWebPart extends BaseClientSideWebPart<IWebcomMarketingImagenesWebPartProps> {
-
   public render(): void {
-    const element: React.ReactElement<IWebcomMarketingImagenesProps> = React.createElement(
-      WebcomMarketingImagenes,
-      {
-        description: this.properties.description
-      }
-    );
+    const element: React.ReactElement<IMarketingImagenesProps> =
+      React.createElement(MarketingImagenes, {});
 
     ReactDom.render(element, this.domElement);
+  }
+
+  protected onInit(): Promise<void> {
+    return super.onInit().then((_) => {
+      // other init code may be present
+
+      sp.setup({
+        spfxContext: this.context,
+      });
+    });
   }
 
   protected onDispose(): void {
@@ -33,7 +38,7 @@ export default class WebcomMarketingImagenesWebPart extends BaseClientSideWebPar
   }
 
   protected get dataVersion(): Version {
-    return Version.parse('1.0');
+    return Version.parse("1.0");
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -41,20 +46,20 @@ export default class WebcomMarketingImagenesWebPart extends BaseClientSideWebPar
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: strings.PropertyPaneDescription,
           },
           groups: [
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                PropertyPaneTextField("description", {
+                  label: strings.DescriptionFieldLabel,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }
