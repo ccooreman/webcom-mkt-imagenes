@@ -12,7 +12,7 @@ export default function useGetFiles() {
   useEffect(() => {
     async function fetchData() {
         setIsloading(true);
-        const allItems: any[] = await sp.web.lists.getById("f8217056-d14c-47b1-8cd8-e9ec03e1c215").items.select('FileRef, FileLeafRef').getAll();
+        const allItems: any[] = await sp.web.lists.getById("1dc93d9d-93b0-4cf5-b37d-f27a9804131d").items.select('FileRef, FileLeafRef').getAll();
         console.log({ allItems });
         setFiles(allItems);
         setIsloading(false);
