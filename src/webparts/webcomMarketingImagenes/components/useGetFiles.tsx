@@ -32,7 +32,9 @@ export default function useGetFiles() {
 
       newItems.map((i) => {
         let itemExist = allCategories.includes(i?.Tags[0]);
-        allCategories.push(i?.Tags[0]);
+        if(!itemExist){
+          allCategories.push(i?.Tags[0]);
+        }
       });
 
       console.log(allCategories);
