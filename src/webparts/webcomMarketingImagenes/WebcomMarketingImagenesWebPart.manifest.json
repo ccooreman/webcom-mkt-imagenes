@@ -20,7 +20,7 @@
     "group": { "default": "Other" },
     "title": { "default": "Webcom Marketing Imagenes" },
     "description": { "default": "Repositorio de Imagenes de Marketing" },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "PictureTile",
     "properties": {
       "description": "Webcom Marketing Imagenes"
     }

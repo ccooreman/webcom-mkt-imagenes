@@ -9,7 +9,7 @@ import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import { sp } from "@pnp/sp/presets/all";
 
 import * as strings from "WebcomMarketingImagenesWebPartStrings";
-import { MarketingImagenes, IMarketingImagenesProps } from "./components/WebcomMarketingImagenes";
+import { MarketingApp, IMarketingAppProps } from "./components/MarketingApp";
 
 export interface IWebcomMarketingImagenesWebPartProps {
   description: string;
@@ -17,8 +17,8 @@ export interface IWebcomMarketingImagenesWebPartProps {
 
 export default class WebcomMarketingImagenesWebPart extends BaseClientSideWebPart<IWebcomMarketingImagenesWebPartProps> {
   public render(): void {
-    const element: React.ReactElement<IMarketingImagenesProps> =
-      React.createElement(MarketingImagenes, {});
+    const element: React.ReactElement<IMarketingAppProps> =
+      React.createElement(MarketingApp, {});
 
     ReactDom.render(element, this.domElement);
   }
