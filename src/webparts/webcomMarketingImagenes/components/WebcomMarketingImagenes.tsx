@@ -12,7 +12,7 @@ export const MarketingImagenes: React.FunctionComponent<
 
   return (
     <>
-      Aca
+      Imagen
       {isLoading && <div>Cargando...</div>}
 	  <Stack horizontal wrap tokens={{childrenGap:10}}>
       	{!isLoading && files.map((i) => <ItemMarketing item={i} />)}
